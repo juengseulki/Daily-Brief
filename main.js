@@ -262,7 +262,7 @@ function toggleBookmark(article) {
 
 async function translateText(text) {
   const res = await fetch(
-    `http://localhost:3000/api/translate?text=${encodeURIComponent(text)}`,
+    `https://daily-brief-yte8.onrender.com/api/translate?text=${encodeURIComponent(text)}`,
   );
   const data = await res.json();
   return data.translatedText || text;
