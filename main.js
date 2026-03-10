@@ -1,3 +1,8 @@
+const API_BASE =
+  window.location.hostname === "localhost"
+    ? "http://localhost:3000"
+    : "https://daily-brief-yte8.onrender.com";
+
 const heroStory = document.querySelector("#hero-story");
 const list = document.querySelector(".news-list");
 const searchInput = document.querySelector(".search");
@@ -88,7 +93,7 @@ async function getDomesticNews() {
   const results = await Promise.all(
     keywords.map(async (keyword) => {
       const res = await fetch(
-        `http://localhost:3000/api/naver-news?q=${encodeURIComponent(keyword)}`,
+        `${API_BASE}/api/naver-news?q=${encodeURIComponent(keyword)}`,
       );
       const data = await res.json();
       return data.items || [];
@@ -100,7 +105,7 @@ async function getDomesticNews() {
 }
 
 async function getWorldNews() {
-  const res = await fetch("http://localhost:3000/api/world-news");
+  const res = await fetch(`${API_BASE}/api/world-news`);
   const data = await res.json();
   return normalizeWorldNews(data.articles || []);
 }
