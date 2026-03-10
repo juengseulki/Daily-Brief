@@ -486,20 +486,41 @@ function applySavedTheme() {
 async function loadNews() {
   renderSkeleton();
 
+  const cachedNews = localStorage.getItem("cachedNews");
+  const cachedTime = localStorage.getItem("cachedNewsTime");
+  const now = Date.now();
+
+  // 30분 캐시
+  const isCacheValid =
+    cachedNews && cachedTime && now - Number(cachedTime) < 30 * 60 * 1000;
+
+  if (isCacheValid) {
+    allArticles = JSON.parse(cachedNews);
+    renderHeroStory(allArticles);
+    renderTrending(allArticles);
+    updateMarketSummary(allArticles);
+    applyFilters();
+    updateActiveButton();
+    return;
+  }
+
   try {
     const domesticNews = await getDomesticNews();
     const worldNews = await getWorldNews();
 
     allArticles = deduplicateArticles([...domesticNews, ...worldNews]);
 
-    updateMarketSummary(allArticles);
+    localStorage.setItem("cachedNews", JSON.stringify(allArticles));
+    localStorage.setItem("cachedNewsTime", String(now));
+
     renderHeroStory(allArticles);
     renderTrending(allArticles);
+    updateMarketSummary(allArticles);
     applyFilters();
     updateActiveButton();
   } catch (error) {
     console.error(error);
-    renderSkeleton();
+    list.innerHTML = `<p class="error-message">뉴스를 불러오지 못했습니다.</p>`;
   }
 }
 
