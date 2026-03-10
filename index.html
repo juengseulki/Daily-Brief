@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Brief</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-top">
+        <h1>Economic and Social Brief</h1>
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
+      </div>
+      <p class="header-subtitle">오늘 주목할 국내외 뉴스</p>
+      <div class="headline-date" id="headline-date"></div>
+    </header>
+
+    <main class="container">
+      <section class="search-section">
+        <input
+          type="text"
+          placeholder="뉴스, 키워드, 기업명을 검색해보세요"
+          class="search"
+        />
+
+        <div class="filters">
+          <button data-filter="all" class="active">전체</button>
+          <button data-filter="domestic">국내</button>
+          <button data-filter="world">해외</button>
+          <button data-filter="bookmarks">북마크</button>
+        </div>
+      </section>
+
+      <section class="hero-section">
+        <div class="section-heading">
+          <span class="section-kicker">대표 뉴스</span>
+          <h2>오늘 가장 주목할 뉴스</h2>
+        </div>
+        <div class="hero-story" id="hero-story"></div>
+      </section>
+
+      <section class="trending-section">
+        <div class="section-heading">
+          <span class="section-kicker">지금 많이 보는 이슈</span>
+          <h2>시장을 움직이는 키워드</h2>
+        </div>
+        <div class="keyword-list"></div>
+      </section>
+
+      <section class="market-summary">
+        <div class="summary-card" id="korea-summary">
+          <h3>🇰🇷 국내</h3>
+          <div class="summary-stats">
+            <span class="positive">📈 0</span>
+            <span class="negative">📉 0</span>
+            <span class="neutral">➖ 0</span>
+          </div>
+        </div>
+
+        <div class="summary-card" id="global-summary">
+          <h3>🌍 해외</h3>
+          <div class="summary-stats">
+            <span class="positive">📈 0</span>
+            <span class="negative">📉 0</span>
+            <span class="neutral">➖ 0</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="latest-section">
+        <div class="section-heading">
+          <span class="section-kicker">최신 뉴스</span>
+          <h2>지금 읽어볼 이야기</h2>
+        </div>
+        <section class="news-list"></section>
+      </section>
+    </main>
+
+    <div class="news-modal hidden">
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <button class="modal-close">✕</button>
+        <img class="modal-image" src="" alt="" />
+
+        <div class="modal-body">
+          <span class="modal-source"></span>
+          <h2 class="modal-title"></h2>
+          <p class="modal-description"></p>
+          <a class="modal-link" href="#" target="_blank">기사 전체 보기 →</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
