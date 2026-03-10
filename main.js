@@ -217,7 +217,7 @@ function calculateHotScore(article, keywordMap) {
   }
 
   if (article.image && !article.image.includes("fallback")) {
-    score += 5;
+    score += 2;
   }
 
   if (article.region === "world") {
